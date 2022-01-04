@@ -160,6 +160,7 @@ class MongoCollection
             unset($options['cursor']);
         } else {
             $options['useCursor'] = false;
+            $options[] = ['cursor' =>(object) []];
         }
 
         try {
