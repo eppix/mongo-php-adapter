@@ -150,16 +150,8 @@ class MongoCollection
             $options = $op;
         }
 
-        if (isset($options['cursor'])) {
-            $options['useCursor'] = true;
-
-            if (isset($options['cursor']['batchSize'])) {
-                $options['batchSize'] = $options['cursor']['batchSize'];
-            }
-
-            unset($options['cursor']);
-        } else {
-            $options['useCursor'] = false;
+        if (!isset($options['cursor'])) {
+            $options[] = ['cursor' =>(object) []];
         }
 
         try {
